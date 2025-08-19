@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - BAAZARX</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../assets/logo-primary.svg" alt="BAAZARX" style="height: 60px;">
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="../catalog.html" class="nav-link">Catalog</a></li>
+                <li class="nav-item"><a href="../cart.html" class="nav-link">Cart <span id="cart-count" class="cart-count">0</span></a></li>
+                <li class="nav-item user-menu">
+                    <div id="user-menu-logged-out">
+                        <a href="login.html" class="nav-link">Login</a>
+                        <a href="register.html" class="nav-link">Register</a>
+                    </div>
+                    <div id="user-menu-logged-in" class="user-dropdown" style="display: none;">
+                        <span id="user-name" class="user-name"></span>
+                        <div class="dropdown-content">
+                            <a href="#" onclick="logout()">Logout</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="confirmation-page">
+        <div class="container">
+            <div id="order-confirmation">
+                <!-- Order confirmation content will be loaded here by cart.js -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BAAZARX</h3>
+                    <p>Thank you for shopping with us! We hope you enjoy your purchase.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Support</h4>
+                    <ul>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#returns">Returns</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 BAAZARX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/script.js"></script>
+    <script src="../js/cart.js"></script>
+
+    <style>
+        .confirmation-page {
+            padding: 120px 0 80px;
+            min-height: 100vh;
+            background: #f8f9fa;
+        }
+
+        .confirmation-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .confirmation-header {
+            margin-bottom: 2rem;
+        }
+
+        .confirmation-header i {
+            font-size: 4rem;
+            color: #28a745;
+            margin-bottom: 1rem;
+        }
+
+        .confirmation-header h1 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+
+        .confirmation-header p {
+            color: #666;
+            font-size: 1.2rem;
+        }
+
+        .order-details {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .order-details h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .order-details p {
+            margin: 0.5rem 0;
+            color: #666;
+        }
+
+        .order-items {
+            margin-bottom: 2rem;
+        }
+
+        .order-items h3 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .confirmation-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-right: 1.5rem;
+        }
+
+        .item-info {
+            flex: 1;
+            text-align: left;
+        }
+
+        .item-info h4 {
+            margin: 0 0 0.5rem 0;
+            color: #333;
+        }
+
+        .item-info p {
+            margin: 0.25rem 0;
+            color: #666;
+        }
+
+        .order-summary {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .order-summary h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            padding: 0.5rem 0;
+        }
+
+        .summary-line.total {
+            border-top: 2px solid #e0e0e0;
+            padding-top: 1rem;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .confirmation-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .confirmation-actions .btn {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .confirmation-content {
+                padding: 2rem 1rem;
+                margin: 0 1rem;
+            }
+            
+            .confirmation-header h1 {
+                font-size: 2rem;
+            }
+            
+            .confirmation-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .item-image {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .confirmation-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</body>
+</html>
+

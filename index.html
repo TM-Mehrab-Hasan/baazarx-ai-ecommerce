@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAAZARX - Experience Smart Shopping with AI</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo-primary.svg" alt="BAAZARX" style="height: 60px;">
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="catalog.html" class="nav-link">Catalog</a></li>
+                <li class="nav-item"><a href="cart.html" class="nav-link">Cart <span id="cart-count" class="cart-count">0</span></a></li>
+                <li class="nav-item user-menu">
+                    <div id="user-menu-logged-out">
+                        <a href="pages/login.html" class="nav-link" style="margin-right: 15px;">Login</a>
+                        <a href="pages/register.html" class="nav-link">Register</a>
+                    </div>
+                    <div id="user-menu-logged-in" class="user-dropdown" style="display: none;">
+                        <span id="user-name" class="user-name"></span>
+                        <div class="dropdown-content">
+                            <a href="#" onclick="logout()">Logout</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div id="threejs-bg" class="threejs-background"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Experience Smart Shopping with AI</h1>
+            <p class="hero-subtitle">Discover personalized products with our intelligent recommendation system</p>
+            <div class="hero-buttons">
+                <a href="catalog.html" class="btn btn-primary">
+                    <span>Shop Now</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#features" class="btn btn-secondary">
+                    <span>Learn More</span>
+                    <i class="fas fa-info-circle"></i>
+                </a>
+            </div>
+        </div>
+        <div class="hero-floating-elements">
+            <div class="float-item float-1"><i class="fas fa-robot"></i></div>
+            <div class="float-item float-2"><i class="fas fa-heart"></i></div>
+            <div class="float-item float-3"><i class="fas fa-star"></i></div>
+            <div class="float-item float-4"><i class="fas fa-magic"></i></div>
+            <div class="float-item float-5"><i class="fas fa-shopping-bag"></i></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose BAAZARX?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI Recommendations</h3>
+                    <p>Get personalized product suggestions based on your browsing history and preferences</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Smart Assistant</h3>
+                    <p>24/7 AI chatbot to help you find products and answer your questions instantly</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Smart Search</h3>
+                    <p>Advanced search and filtering options to find exactly what you're looking for</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure Shopping</h3>
+                    <p>Safe and secure checkout process with multiple payment options</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Products Preview -->
+    <section class="popular-products">
+        <div class="container">
+            <h2 class="section-title">Popular Products</h2>
+            <div id="popular-products-grid" class="products-grid">
+                <!-- Popular products will be loaded here -->
+            </div>
+            <div class="text-center">
+                <a href="catalog.html" class="btn btn-primary">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Recommendations Sidebar -->
+    <div id="recommendations-sidebar" class="recommendations-sidebar">
+        <div class="recommendations-header">
+            <h3><i class="fas fa-magic"></i> AI Recommendations</h3>
+            <button id="close-recommendations" class="close-btn">&times;</button>
+        </div>
+        <div id="recommendations-content" class="recommendations-content">
+            <!-- Recommendations will be loaded here -->
+        </div>
+    </div>
+
+    <!-- AI Chatbot -->
+    <div id="chatbot-container" class="chatbot-container">
+        <div id="chatbot-toggle" class="chatbot-toggle">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div id="chatbot-window" class="chatbot-window">
+            <div class="chatbot-header">
+                <h4><i class="fas fa-robot"></i> AI Assistant</h4>
+                <button id="chatbot-close" class="close-btn">&times;</button>
+            </div>
+            <div id="chatbot-messages" class="chatbot-messages">
+                <div class="message bot-message">
+                    <p>Hello! I'm your AI shopping assistant. How can I help you today?</p>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbot-input-field" placeholder="Type your message...">
+                <button id="chatbot-send" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BAAZARX</h3>
+                    <p>Experience the future of online shopping with AI-powered recommendations and smart assistance.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="catalog.html">Catalog</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="catalog.html?category=electronics">Electronics</a></li>
+                        <li><a href="catalog.html?category=fashion">Fashion</a></li>
+                        <li><a href="catalog.html?category=home">Home & Kitchen</a></li>
+                        <li><a href="catalog.html?category=health">Health & Beauty</a></li>
+                        <li><a href="catalog.html?category=sports">Sports & Fitness</a></li>
+                        <li><a href="catalog.html?category=books">Books & Media</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Admin</h4>
+                    <ul>
+                        <li><a href="pages/admin/admin-login.html">Admin Login</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 BAAZARX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/threejs-animations.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/recommendations.js"></script>
+</body>
+</html>
+</body>
+</html>

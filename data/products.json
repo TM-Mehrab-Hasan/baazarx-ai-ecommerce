@@ -1,0 +1,755 @@
+{
+  "categories": {
+    "electronics": {
+      "name": "Electronics",
+      "subcategories": {
+        "smartphones": "Smartphones",
+        "laptops": "Laptops", 
+        "monitors": "Monitors",
+        "tablets": "Tablets",
+        "accessories": "Accessories",
+        "cameras": "Cameras & Photography",
+        "audio": "Audio & Speakers",
+        "gaming": "Gaming Consoles",
+        "smartwatch": "Smart Watches",
+        "tv": "Televisions",
+        "appliances": "Home Appliances"
+      }
+    },
+    "fashion": {
+      "name": "Fashion",
+      "subcategories": {
+        "mens": "Men's Fashion",
+        "womens": "Women's Fashion",
+        "shoes": "Shoes",
+        "bags": "Bags",
+        "jewelry": "Jewelry & Watches",
+        "sunglasses": "Sunglasses & Eyewear",
+        "kids": "Kids Fashion",
+        "accessories": "Fashion Accessories",
+        "ethnic": "Ethnic Wear",
+        "winter": "Winter Wear"
+      }
+    },
+    "home": {
+      "name": "Home & Garden",
+      "subcategories": {
+        "furniture": "Furniture",
+        "kitchen": "Kitchen",
+        "garden": "Garden",
+        "decor": "Home Decor",
+        "bedding": "Bedding & Bath",
+        "lighting": "Lighting",
+        "storage": "Storage & Organization",
+        "tools": "Tools & Hardware",
+        "cleaning": "Cleaning Supplies",
+        "security": "Home Security"
+      }
+    },
+    "sports": {
+      "name": "Sports & Fitness",
+      "subcategories": {
+        "fitness": "Fitness Equipment",
+        "outdoor": "Outdoor Sports",
+        "cricket": "Cricket",
+        "football": "Football",
+        "badminton": "Badminton",
+        "cycling": "Cycling",
+        "running": "Running & Jogging",
+        "gym": "Gym & Strength Training",
+        "yoga": "Yoga & Meditation",
+        "swimming": "Swimming"
+      }
+    },
+    "health": {
+      "name": "Health & Beauty",
+      "subcategories": {
+        "skincare": "Skincare",
+        "makeup": "Makeup",
+        "haircare": "Hair Care",
+        "fragrance": "Fragrances",
+        "personal": "Personal Care",
+        "supplements": "Health Supplements",
+        "medical": "Medical Equipment",
+        "ayurveda": "Ayurvedic Products",
+        "mens_grooming": "Men's Grooming",
+        "oral_care": "Oral Care"
+      }
+    },
+    "books": {
+      "name": "Books & Education",
+      "subcategories": {
+        "academic": "Academic Books",
+        "fiction": "Fiction",
+        "non_fiction": "Non-Fiction",
+        "children": "Children's Books",
+        "textbooks": "Textbooks",
+        "comics": "Comics & Manga",
+        "religion": "Religious Books",
+        "business": "Business & Economics",
+        "self_help": "Self Help",
+        "stationery": "Stationery"
+      }
+    },
+    "automotive": {
+      "name": "Automotive",
+      "subcategories": {
+        "accessories": "Car Accessories",
+        "parts": "Car Parts",
+        "electronics": "Car Electronics",
+        "care": "Car Care",
+        "tools": "Automotive Tools",
+        "tyres": "Tyres & Wheels",
+        "oils": "Engine Oils & Fluids",
+        "bike": "Bike Accessories",
+        "emergency": "Emergency Kits",
+        "interior": "Interior Accessories"
+      }
+    },
+    "toys": {
+      "name": "Toys & Games",
+      "subcategories": {
+        "action": "Action Figures",
+        "dolls": "Dolls & Playsets",
+        "educational": "Educational Toys",
+        "outdoor": "Outdoor Toys",
+        "board": "Board Games",
+        "puzzles": "Puzzles",
+        "building": "Building Blocks",
+        "electronic": "Electronic Toys",
+        "baby": "Baby & Toddler Toys",
+        "crafts": "Arts & Crafts"
+      }
+    },
+    "grocery": {
+      "name": "Grocery & Food",
+      "subcategories": {
+        "rice": "Rice & Grains",
+        "oil": "Cooking Oil",
+        "spices": "Spices & Seasonings",
+        "snacks": "Snacks & Sweets",
+        "beverages": "Beverages",
+        "dairy": "Dairy Products",
+        "frozen": "Frozen Foods",
+        "organic": "Organic Products",
+        "baby_food": "Baby Food",
+        "international": "International Foods"
+      }
+    },
+    "office": {
+      "name": "Office & Business",
+      "subcategories": {
+        "furniture": "Office Furniture",
+        "supplies": "Office Supplies",
+        "electronics": "Office Electronics",
+        "storage": "File Storage",
+        "printing": "Printing & Scanning",
+        "networking": "Networking Equipment",
+        "software": "Software",
+        "security": "Office Security",
+        "presentation": "Presentation Equipment",
+        "communication": "Communication Devices"
+      }
+    },
+    "travel": {
+      "name": "Travel & Luggage",
+      "subcategories": {
+        "luggage": "Luggage & Suitcases",
+        "backpacks": "Travel Backpacks",
+        "accessories": "Travel Accessories",
+        "gadgets": "Travel Gadgets",
+        "comfort": "Travel Comfort",
+        "safety": "Travel Safety",
+        "bags": "Travel Bags",
+        "organizers": "Packing Organizers",
+        "gear": "Outdoor Gear",
+        "maps": "Maps & Guides"
+      }
+    },
+    "pets": {
+      "name": "Pets & Animals",
+      "subcategories": {
+        "dog": "Dog Supplies",
+        "cat": "Cat Supplies",
+        "bird": "Bird Supplies",
+        "fish": "Fish & Aquarium",
+        "small_pets": "Small Pet Supplies",
+        "food": "Pet Food",
+        "toys": "Pet Toys",
+        "grooming": "Pet Grooming",
+        "health": "Pet Health",
+        "accessories": "Pet Accessories"
+      }
+    }
+  },
+  "products": [
+    {
+      "id": 1,
+      "name": "Samsung Galaxy A56 5G",
+      "category": "electronics",
+      "subcategory": "smartphones",
+      "price": 52999,
+      "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500",
+      "description": "Samsung Galaxy A56 with 5G connectivity, triple camera setup and Super AMOLED display. Perfect for photography enthusiasts and power users.",
+      "stock": 45,
+      "featured": true,
+      "rating": 4.7,
+      "reviews": 1342,
+      "tags": ["samsung", "5g", "android", "smartphone"],
+      "variants": [
+        {"ram": "8GB", "storage": "128GB", "price": 48999},
+        {"ram": "8GB", "storage": "256GB", "price": 52999},
+        {"ram": "12GB", "storage": "256GB", "price": 57999}
+      ],
+      "colors": [
+        {"name": "Midnight Black", "hex": "#1a1a1a", "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"},
+        {"name": "Ocean Blue", "hex": "#1e40af", "image": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500"},
+        {"name": "Pearl White", "hex": "#f8fafc", "image": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=500"}
+      ],
+      "specifications": {
+        "display": "6.7-inch Super AMOLED, 2400x1080, 120Hz",
+        "processor": "Exynos 1480 Octa-core",
+        "ram": "8GB/12GB LPDDR5",
+        "storage": "128GB/256GB UFS 3.1",
+        "camera_rear": "50MP Main + 12MP Ultra-wide + 5MP Macro",
+        "camera_front": "32MP",
+        "battery": "5000mAh with 25W fast charging",
+        "os": "Android 14 with One UI 6.1",
+        "connectivity": "5G, Wi-Fi 6, Bluetooth 5.3",
+        "dimensions": "164.7 x 77.2 x 8.2 mm",
+        "weight": "213g",
+        "build": "Gorilla Glass Victus+, IP67 rated"
+      },
+      "detailedReviews": [
+        {"user": "Rahman Khan", "rating": 5, "comment": "Excellent phone with great camera quality! The 120Hz display is smooth and battery lasts all day.", "date": "2025-01-15"},
+        {"user": "Fatima Ahmed", "rating": 4, "comment": "Good performance but charging could be faster. Overall satisfied with the purchase.", "date": "2025-01-10"},
+        {"user": "Arif Hassan", "rating": 5, "comment": "Best value for money in this price range. The camera is outstanding!", "date": "2025-01-08"}
+      ]
+    },
+    {
+      "id": 2,
+      "name": "OnePlus Nord CE5 5G",
+      "category": "electronics",
+      "subcategory": "smartphones",
+      "price": 35999,
+      "image": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500",
+      "description": "OnePlus Nord CE5 featuring Snapdragon processor, triple camera system, 90Hz display and Warp Charge fast charging technology.",
+      "stock": 38,
+      "featured": true,
+      "rating": 4.6,
+      "reviews": 987,
+      "tags": ["oneplus", "5g", "snapdragon", "smartphone"],
+      "variants": [
+        {"ram": "6GB", "storage": "128GB", "price": 31999},
+        {"ram": "8GB", "storage": "256GB", "price": 35999}
+      ],
+      "colors": [
+        {"name": "Gray Sierra", "hex": "#6b7280", "image": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500"},
+        {"name": "Blue Void", "hex": "#1e3a8a", "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"}
+      ],
+      "specifications": {
+        "display": "6.43-inch AMOLED, 2400x1080, 90Hz",
+        "processor": "Snapdragon 750G Octa-core",
+        "ram": "6GB/8GB LPDDR4X",
+        "storage": "128GB/256GB UFS 2.1",
+        "camera_rear": "64MP Main + 8MP Ultra-wide + 2MP Macro",
+        "camera_front": "16MP",
+        "battery": "4500mAh with 65W Warp Charge",
+        "os": "OxygenOS 14 based on Android 14",
+        "connectivity": "5G, Wi-Fi 5, Bluetooth 5.1",
+        "dimensions": "159.2 x 73.5 x 7.9 mm",
+        "weight": "170g",
+        "build": "Plastic frame, Gorilla Glass 5"
+      },
+      "detailedReviews": [
+        {"user": "Nasir Islam", "rating": 5, "comment": "Fast charging is amazing! 65W Warp Charge fills the battery so quickly.", "date": "2025-01-12"},
+        {"user": "Sadia Khatun", "rating": 4, "comment": "Good phone but camera could be improved in low light conditions.", "date": "2025-01-07"}
+      ]
+    },
+    {
+      "id": 3,
+      "name": "ASUS VivoBook 15",
+      "category": "electronics",
+      "subcategory": "laptops",
+      "price": 89999,
+      "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500",
+      "description": "ASUS VivoBook 15 with Intel Core i5 processor, 15.6\" FHD display, perfect for students and professionals. Lightweight design with all-day battery life.",
+      "stock": 25,
+      "featured": false,
+      "rating": 4.4,
+      "reviews": 567,
+      "tags": ["asus", "laptop", "intel", "student"],
+      "variants": [
+        {"ram": "8GB", "storage": "512GB SSD", "price": 89999},
+        {"ram": "16GB", "storage": "512GB SSD", "price": 99999},
+        {"ram": "16GB", "storage": "1TB SSD", "price": 109999}
+      ],
+      "colors": [
+        {"name": "Slate Gray", "hex": "#374151", "image": "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500"},
+        {"name": "Silver", "hex": "#e5e7eb", "image": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=500"}
+      ],
+      "specifications": {
+        "display": "15.6-inch FHD (1920x1080) Anti-glare",
+        "processor": "Intel Core i5-1335U (10 cores, up to 4.6GHz)",
+        "ram": "8GB/16GB DDR4-3200",
+        "storage": "512GB/1TB PCIe 4.0 NVMe SSD",
+        "graphics": "Intel Iris Xe Graphics",
+        "battery": "42WHr, up to 9 hours",
+        "os": "Windows 11 Home",
+        "connectivity": "Wi-Fi 6, Bluetooth 5.3",
+        "ports": "2x USB 3.2, 1x USB-C, HDMI, Audio jack",
+        "dimensions": "359.2 x 233.8 x 19.9 mm",
+        "weight": "1.7kg",
+        "keyboard": "Backlit Chiclet keyboard"
+      },
+      "detailedReviews": [
+        {"user": "Ahmed Hassan", "rating": 4, "comment": "Great laptop for the price. Perfect for office work and light gaming.", "date": "2025-01-14"},
+        {"user": "Nadia Rahman", "rating": 5, "comment": "Excellent build quality and battery life. Highly recommended for students.", "date": "2025-01-09"}
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Samsung 27\" Curved Monitor",
+      "category": "electronics",
+      "subcategory": "monitors",
+      "price": 45999,
+      "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500",
+      "description": "Samsung 27-inch curved gaming monitor with 144Hz refresh rate, 1ms response time, and AMD FreeSync. Perfect for gaming and professional work.",
+      "stock": 18,
+      "featured": true,
+      "rating": 4.8,
+      "reviews": 342,
+      "tags": ["samsung", "monitor", "gaming", "curved"],
+      "variants": [
+        {"size": "24-inch", "resolution": "1080p", "price": 35999},
+        {"size": "27-inch", "resolution": "1440p", "price": 45999},
+        {"size": "32-inch", "resolution": "4K", "price": 65999}
+      ],
+      "colors": [
+        {"name": "Matte Black", "hex": "#1f2937", "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500"}
+      ],
+      "specifications": {
+        "display": "27-inch VA Curved (1800R)",
+        "resolution": "2560 x 1440 (QHD)",
+        "refresh_rate": "144Hz",
+        "response_time": "1ms (MPRT)",
+        "panel": "VA with quantum dot technology",
+        "brightness": "350 cd/m²",
+        "contrast": "3000:1",
+        "color_gamut": "125% sRGB",
+        "connectivity": "HDMI 2.0 x2, DisplayPort 1.2, USB",
+        "features": "AMD FreeSync, Eye Saver Mode, Flicker Free",
+        "stand": "Height, tilt, swivel adjustable",
+        "dimensions": "614.8 x 367.3 x 233.1 mm",
+        "weight": "5.1kg"
+      },
+      "detailedReviews": [
+        {"user": "Gaming Pro", "rating": 5, "comment": "Amazing monitor for gaming! 144Hz makes everything so smooth.", "date": "2025-01-13"},
+        {"user": "Design Expert", "rating": 4, "comment": "Great color accuracy for design work. The curve is very comfortable.", "date": "2025-01-11"}
+      ]
+    },
+    {
+      "id": 5,
+      "name": "iPhone 15 128GB",
+      "category": "electronics",
+      "subcategory": "smartphones",
+      "price": 124999,
+      "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500",
+      "description": "Latest iPhone 15 with A17 Pro chip, advanced camera system, and USB-C connectivity.",
+      "stock": 32,
+      "featured": true,
+      "rating": 4.9,
+      "reviews": 876,
+      "tags": ["iphone", "apple", "smartphone", "premium"],
+      "variants": [
+        {"storage": "128GB", "price": 124999},
+        {"storage": "256GB", "price": 134999},
+        {"storage": "512GB", "price": 154999}
+      ],
+      "colors": [
+        {"name": "Blue Titanium", "hex": "#4169e1", "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"},
+        {"name": "Black Titanium", "hex": "#1c1c1e", "image": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500"},
+        {"name": "Natural Titanium", "hex": "#a8a8a8", "image": "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=500"}
+      ],
+      "specifications": {
+        "display": "6.1-inch Super Retina XDR OLED",
+        "processor": "A17 Pro chip with 6-core GPU",
+        "storage": "128GB/256GB/512GB",
+        "camera_rear": "48MP Main + 12MP Ultra Wide",
+        "camera_front": "12MP TrueDepth",
+        "battery": "Up to 20 hours video playback",
+        "os": "iOS 17",
+        "connectivity": "5G, Wi-Fi 6E, Bluetooth 5.3",
+        "dimensions": "147.6 x 71.6 x 7.80 mm",
+        "weight": "171g",
+        "build": "Titanium, Ceramic Shield front"
+      },
+      "detailedReviews": [
+        {"user": "Tech Reviewer", "rating": 5, "comment": "Best iPhone yet! The titanium build feels premium and camera is exceptional.", "date": "2025-01-16"}
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Sony WH-1000XM5",
+      "category": "electronics",
+      "subcategory": "accessories",
+      "price": 32999,
+      "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500",
+      "description": "Premium noise-canceling wireless headphones with industry-leading sound quality.",
+      "stock": 28,
+      "featured": false,
+      "rating": 4.8,
+      "reviews": 445,
+      "tags": ["sony", "headphones", "wireless", "noise-canceling"],
+      "variants": [
+        {"model": "Standard", "price": 32999}
+      ],
+      "colors": [
+        {"name": "Midnight Black", "hex": "#000000", "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500"},
+        {"name": "Silver", "hex": "#c0c0c0", "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500"}
+      ],
+      "specifications": {
+        "driver": "30mm dynamic drivers",
+        "frequency_response": "4Hz - 40kHz",
+        "noise_canceling": "Industry-leading Dual Noise Sensor technology",
+        "battery": "30 hours with ANC on",
+        "connectivity": "Bluetooth 5.2, NFC",
+        "weight": "250g",
+        "features": "Speak-to-Chat, Quick Attention, Multipoint connection"
+      },
+      "detailedReviews": [
+        {"user": "Music Lover", "rating": 5, "comment": "Best headphones I've ever owned. Sound quality is incredible!", "date": "2025-01-14"}
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Adidas Ultraboost 22",
+      "category": "sports",
+      "subcategory": "running",
+      "price": 18999,
+      "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500",
+      "description": "Premium running shoes with responsive Boost midsole and Primeknit upper for maximum comfort and performance.",
+      "stock": 35,
+      "featured": true,
+      "rating": 4.6,
+      "reviews": 789,
+      "tags": ["adidas", "running", "sports", "ultraboost"],
+      "variants": [
+        {"size": "UK 7", "price": 18999},
+        {"size": "UK 8", "price": 18999},
+        {"size": "UK 9", "price": 18999},
+        {"size": "UK 10", "price": 18999}
+      ],
+      "colors": [
+        {"name": "Core Black", "hex": "#000000", "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"},
+        {"name": "Cloud White", "hex": "#ffffff", "image": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500"},
+        {"name": "Solar Yellow", "hex": "#ffd700", "image": "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=500"}
+      ],
+      "specifications": {
+        "upper": "Primeknit textile with synthetic overlays",
+        "midsole": "Boost foam for energy return",
+        "outsole": "Continental rubber for superior grip",
+        "weight": "340g (size UK 9)",
+        "drop": "10mm heel-to-toe offset",
+        "fit": "Regular fit with lace closure",
+        "purpose": "Road running, daily training"
+      },
+      "detailedReviews": [
+        {"user": "Runner Pro", "rating": 5, "comment": "Amazing comfort for long runs. The Boost technology really works!", "date": "2025-01-16"},
+        {"user": "Fitness Enthusiast", "rating": 4, "comment": "Great shoes but a bit pricey. Worth it for serious runners.", "date": "2025-01-12"}
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Maybelline Fit Me Foundation",
+      "category": "health",
+      "subcategory": "makeup",
+      "price": 1299,
+      "image": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500",
+      "description": "Lightweight foundation that matches skin tone and texture. Provides natural coverage with matte finish.",
+      "stock": 120,
+      "featured": false,
+      "rating": 4.3,
+      "reviews": 2156,
+      "tags": ["maybelline", "foundation", "makeup", "beauty"],
+      "variants": [
+        {"shade": "Fair", "price": 1299},
+        {"shade": "Light", "price": 1299},
+        {"shade": "Medium", "price": 1299},
+        {"shade": "Tan", "price": 1299}
+      ],
+      "colors": [
+        {"name": "Fair", "hex": "#f5deb3", "image": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500"},
+        {"name": "Light", "hex": "#deb887", "image": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500"},
+        {"name": "Medium", "hex": "#cd853f", "image": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500"}
+      ],
+      "specifications": {
+        "type": "Liquid Foundation",
+        "coverage": "Medium to Full",
+        "finish": "Matte",
+        "skin_type": "Normal to Oily",
+        "volume": "30ml",
+        "spf": "None",
+        "key_ingredients": "Titanium Dioxide, Iron Oxides",
+        "application": "Apply with brush, sponge or fingers"
+      },
+      "detailedReviews": [
+        {"user": "Beauty Blogger", "rating": 4, "comment": "Good affordable foundation. Lasts most of the day without touch-ups.", "date": "2025-01-15"},
+        {"user": "Makeup Artist", "rating": 5, "comment": "Perfect for daily wear. Great shade range for Bengali skin tones.", "date": "2025-01-10"}
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Harry Potter Complete Series",
+      "category": "books",
+      "subcategory": "fiction",
+      "price": 4999,
+      "image": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=500",
+      "description": "Complete set of all 7 Harry Potter books by J.K. Rowling. Premium hardcover edition with beautiful illustrations.",
+      "stock": 25,
+      "featured": true,
+      "rating": 4.9,
+      "reviews": 1876,
+      "tags": ["harry potter", "books", "fiction", "fantasy"],
+      "variants": [
+        {"edition": "Hardcover", "price": 4999},
+        {"edition": "Paperback", "price": 2999}
+      ],
+      "colors": [
+        {"name": "Original Cover", "hex": "#8b0000", "image": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=500"}
+      ],
+      "specifications": {
+        "author": "J.K. Rowling",
+        "publisher": "Bloomsbury Publishing",
+        "language": "English",
+        "total_pages": "4224 pages",
+        "format": "Hardcover/Paperback",
+        "dimensions": "24 x 16 x 20 cm",
+        "weight": "3.2kg (Hardcover set)",
+        "isbn": "978-1408856772",
+        "age_group": "9+ years"
+      },
+      "detailedReviews": [
+        {"user": "Book Lover", "rating": 5, "comment": "Magical series! Perfect for both kids and adults. Great quality hardcover edition.", "date": "2025-01-14"},
+        {"user": "Parent", "rating": 5, "comment": "My children love these books. Excellent way to encourage reading.", "date": "2025-01-11"}
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Car Phone Holder Dashboard",
+      "category": "automotive",
+      "subcategory": "accessories",
+      "price": 899,
+      "image": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=500",
+      "description": "Universal car phone holder with 360-degree rotation and strong magnetic grip. Compatible with all smartphone sizes.",
+      "stock": 78,
+      "featured": false,
+      "rating": 4.4,
+      "reviews": 567,
+      "tags": ["car", "phone holder", "automotive", "accessories"],
+      "variants": [
+        {"type": "Magnetic", "price": 899},
+        {"type": "Clamp Style", "price": 1299}
+      ],
+      "colors": [
+        {"name": "Black", "hex": "#000000", "image": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=500"},
+        {"name": "Silver", "hex": "#c0c0c0", "image": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=500"}
+      ],
+      "specifications": {
+        "compatibility": "All smartphones 4-7 inches",
+        "mounting": "Dashboard, windshield",
+        "rotation": "360 degrees",
+        "material": "ABS plastic + metal",
+        "magnet_strength": "8 powerful magnets",
+        "installation": "Adhesive base or suction cup",
+        "weight": "150g",
+        "warranty": "1 year"
+      },
+      "detailedReviews": [
+        {"user": "Driver", "rating": 4, "comment": "Very sturdy holder. Keeps phone secure even on bumpy roads.", "date": "2025-01-13"},
+        {"user": "Uber Driver", "rating": 5, "comment": "Perfect for navigation. Easy to install and adjust.", "date": "2025-01-09"}
+      ]
+    },
+    {
+      "id": 11,
+      "name": "LEGO City Police Station",
+      "category": "toys",
+      "subcategory": "building",
+      "price": 8999,
+      "image": "https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=500",
+      "description": "Complete LEGO police station set with 4 minifigures, police cars, helicopter and jail cell. Perfect for creative play.",
+      "stock": 15,
+      "featured": true,
+      "rating": 4.8,
+      "reviews": 423,
+      "tags": ["lego", "building", "toys", "police"],
+      "variants": [
+        {"set": "Basic Set", "price": 8999},
+        {"set": "Deluxe Set", "price": 12999}
+      ],
+      "colors": [
+        {"name": "Original Colors", "hex": "#0066cc", "image": "https://images.unsplash.com/photo-1558060370-d644479cb6f7?w=500"}
+      ],
+      "specifications": {
+        "pieces": "845 pieces",
+        "minifigures": "4 police officers + 2 crooks",
+        "age_range": "6-12 years",
+        "dimensions": "48 x 35 x 28 cm (assembled)",
+        "series": "LEGO City",
+        "item_number": "60316",
+        "includes": "Police station, helicopter, 2 cars, jail cell",
+        "skills": "Fine motor, creativity, problem-solving"
+      },
+      "detailedReviews": [
+        {"user": "Parent", "rating": 5, "comment": "Great set! My kids spent hours building and playing with it.", "date": "2025-01-15"},
+        {"user": "LEGO Fan", "rating": 4, "comment": "Good value for money. Lots of play possibilities.", "date": "2025-01-12"}
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Basmati Rice Premium 5kg",
+      "category": "grocery",
+      "subcategory": "rice",
+      "price": 1299,
+      "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500",
+      "description": "Premium quality Basmati rice from the foothills of Himalayas. Long grain, aromatic and perfect for biriyani and pulao.",
+      "stock": 200,
+      "featured": false,
+      "rating": 4.7,
+      "reviews": 1234,
+      "tags": ["basmati", "rice", "grocery", "premium"],
+      "variants": [
+        {"weight": "1kg", "price": 299},
+        {"weight": "5kg", "price": 1299},
+        {"weight": "10kg", "price": 2399}
+      ],
+      "colors": [
+        {"name": "Natural White", "hex": "#f5f5dc", "image": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500"}
+      ],
+      "specifications": {
+        "type": "Premium Basmati Rice",
+        "origin": "India/Pakistan",
+        "grain_length": "6.8mm average",
+        "moisture": "Maximum 14%",
+        "broken_grains": "Maximum 5%",
+        "aging": "Minimum 2 years",
+        "packaging": "Food grade polythene",
+        "shelf_life": "2 years from manufacturing"
+      },
+      "detailedReviews": [
+        {"user": "Home Cook", "rating": 5, "comment": "Excellent quality rice. Perfect for special occasions and daily meals.", "date": "2025-01-16"},
+        {"user": "Restaurant Owner", "rating": 4, "comment": "Good quality for the price. Customers love our biriyani made with this rice.", "date": "2025-01-13"}
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Ergonomic Office Chair",
+      "category": "office",
+      "subcategory": "furniture",
+      "price": 15999,
+      "image": "https://images.unsplash.com/photo-1541558869434-2840d308329a?w=500",
+      "description": "Premium ergonomic office chair with lumbar support, adjustable height and breathable mesh back. Perfect for long work hours.",
+      "stock": 22,
+      "featured": true,
+      "rating": 4.6,
+      "reviews": 345,
+      "tags": ["office", "chair", "ergonomic", "furniture"],
+      "variants": [
+        {"type": "Standard", "price": 15999},
+        {"type": "Premium with Headrest", "price": 19999}
+      ],
+      "colors": [
+        {"name": "Black", "hex": "#000000", "image": "https://images.unsplash.com/photo-1541558869434-2840d308329a?w=500"},
+        {"name": "Gray", "hex": "#808080", "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=500"}
+      ],
+      "specifications": {
+        "backrest": "Breathable mesh with lumbar support",
+        "seat": "High-density foam cushion",
+        "armrests": "Adjustable height and width",
+        "base": "Five-star nylon base with smooth casters",
+        "height_adjustment": "Gas cylinder mechanism",
+        "weight_capacity": "120kg",
+        "dimensions": "66 x 66 x 110-120cm",
+        "warranty": "2 years"
+      },
+      "detailedReviews": [
+        {"user": "Office Worker", "rating": 5, "comment": "Great chair for long hours. My back pain has reduced significantly.", "date": "2025-01-14"},
+        {"user": "Freelancer", "rating": 4, "comment": "Comfortable and well-built. Worth the investment for home office.", "date": "2025-01-10"}
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Travel Backpack 40L",
+      "category": "travel",
+      "subcategory": "backpacks",
+      "price": 3999,
+      "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500",
+      "description": "Durable travel backpack with multiple compartments, laptop sleeve and rain cover. Perfect for weekend trips and business travel.",
+      "stock": 45,
+      "featured": false,
+      "rating": 4.5,
+      "reviews": 678,
+      "tags": ["travel", "backpack", "luggage", "outdoor"],
+      "variants": [
+        {"capacity": "30L", "price": 2999},
+        {"capacity": "40L", "price": 3999},
+        {"capacity": "50L", "price": 4999}
+      ],
+      "colors": [
+        {"name": "Black", "hex": "#000000", "image": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500"},
+        {"name": "Navy Blue", "hex": "#000080", "image": "https://images.unsplash.com/photo-1581605405669-fcdf81165afa?w=500"},
+        {"name": "Gray", "hex": "#808080", "image": "https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?w=500"}
+      ],
+      "specifications": {
+        "capacity": "40 liters",
+        "material": "Water-resistant nylon",
+        "laptop_compartment": "Fits up to 17-inch laptop",
+        "compartments": "Multiple zippered pockets",
+        "straps": "Padded shoulder and chest straps",
+        "dimensions": "55 x 35 x 25cm",
+        "weight": "1.2kg",
+        "features": "Rain cover, luggage strap, USB port"
+      },
+      "detailedReviews": [
+        {"user": "Traveler", "rating": 5, "comment": "Perfect size for cabin luggage. Very organized with lots of pockets.", "date": "2025-01-15"},
+        {"user": "Business Traveler", "rating": 4, "comment": "Great quality and professional looking. Laptop compartment is well-padded.", "date": "2025-01-11"}
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Dog Food Premium Adult 10kg",
+      "category": "pets",
+      "subcategory": "food",
+      "price": 4999,
+      "image": "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=500",
+      "description": "Premium dry dog food for adult dogs with real chicken, vegetables and essential nutrients for optimal health.",
+      "stock": 35,
+      "featured": false,
+      "rating": 4.6,
+      "reviews": 892,
+      "tags": ["dog food", "pets", "premium", "nutrition"],
+      "variants": [
+        {"weight": "3kg", "price": 1999},
+        {"weight": "10kg", "price": 4999},
+        {"weight": "15kg", "price": 6999}
+      ],
+      "colors": [
+        {"name": "Natural", "hex": "#8b4513", "image": "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=500"}
+      ],
+      "specifications": {
+        "main_ingredient": "Real chicken (25%)",
+        "protein": "Minimum 22%",
+        "fat": "Minimum 8%",
+        "fiber": "Maximum 4%",
+        "moisture": "Maximum 10%",
+        "age_group": "Adult dogs (1-7 years)",
+        "breed_size": "All breed sizes",
+        "special_features": "No artificial colors, Real meat first ingredient"
+      },
+      "detailedReviews": [
+        {"user": "Pet Owner", "rating": 5, "comment": "My dog loves this food! His coat is shinier and he has more energy.", "date": "2025-01-16"},
+        {"user": "Veterinarian", "rating": 4, "comment": "Good quality ingredients. Recommended for maintaining dog health.", "date": "2025-01-12"}
+      ]
+    }
+  ]
+}

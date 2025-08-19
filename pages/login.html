@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - BAAZARX</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+        <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Home button styles */
+        .home-btn {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            color: #f59e0b;
+            border: 2px solid rgba(245, 158, 11, 0.3);
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(15px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .home-btn:hover {
+            background: rgba(245, 158, 11, 0.9);
+            color: #000;
+            border-color: #f59e0b;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(245, 158, 11, 0.4);
+        }
+
+        .home-btn i {
+            font-size: 1.1rem;
+        }
+
+        /* Futuristic Particle Animation */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float-particle 8s infinite ease-in-out;
+        }
+
+        .particle:nth-child(1) {
+            width: 4px; height: 4px;
+            top: 20%; left: 10%;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            width: 6px; height: 6px;
+            top: 60%; left: 80%;
+            animation-delay: 2s;
+        }
+
+        .particle:nth-child(3) {
+            width: 3px; height: 3px;
+            top: 80%; left: 20%;
+            animation-delay: 4s;
+        }
+
+        .particle:nth-child(4) {
+            width: 5px; height: 5px;
+            top: 30%; left: 70%;
+            animation-delay: 6s;
+        }
+
+        .particle:nth-child(5) {
+            width: 4px; height: 4px;
+            top: 50%; left: 40%;
+            animation-delay: 1s;
+        }
+
+        @keyframes float-particle {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px) scale(1);
+                opacity: 0.4;
+            }
+            50% {
+                transform: translateY(-100px) translateX(50px) scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        .auth-body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .auth-body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 107, 107, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+            animation: floating-orbs 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes floating-orbs {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            33% { transform: translateY(-20px) scale(1.1); }
+            66% { transform: translateY(10px) scale(0.9); }
+        }
+
+        .auth-container-modern {
+            display: flex;
+            min-height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Left Side - Branding */
+        .auth-branding {
+            flex: 1;
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            color: white;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .auth-branding::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .brand-content {
+            z-index: 2;
+            position: relative;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            position: relative;
+            font-size: 48px;
+            margin-right: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .ai-spark {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 16px;
+            color: #ffd700;
+            animation: sparkle 1.5s infinite;
+        }
+
+        .brand-logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .ai-badge {
+            background: linear-gradient(45deg, #ff6b6b, #ffd700);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+            animation: glow 2s infinite alternate;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .brand-tagline h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .brand-tagline p {
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .trust-indicators {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .trust-item i {
+            margin-right: 16px;
+            font-size: 1.2rem;
+            color: #4ade80;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .float-item {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .float-1 { top: 20%; left: 80%; animation-delay: 0s; }
+        .float-2 { top: 60%; left: 10%; animation-delay: 1s; }
+        .float-3 { top: 80%; left: 70%; animation-delay: 2s; }
+        .float-4 { top: 40%; left: 90%; animation-delay: 3s; }
+
+        /* Right Side - Form */
+        .auth-form-container {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fafafa;
+            position: relative;
+            z-index: 5;
+        }
+
+        .auth-form-modern {
+            width: 100%;
+            max-width: 440px;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: #6b7280;
+            font-size: 1rem;
+        }
+
+        .modern-form {
+            margin-bottom: 32px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .input-wrapper.focused {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .input-wrapper.focused .input-icon {
+            color: #3b82f6;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 16px 16px 16px 48px;
+            border: none;
+            background: transparent;
+            font-size: 1rem;
+            color: #1f2937;
+            outline: none;
+            border-radius: 12px;
+        }
+
+        .input-wrapper label {
+            position: absolute;
+            left: 48px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            font-size: 1rem;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-wrapper.focused label,
+        .input-wrapper input:not(:placeholder-shown) + label {
+            top: 8px;
+            font-size: 0.75rem;
+            color: #3b82f6;
+            background: white;
+            padding: 0 4px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .password-toggle:hover {
+            color: #3b82f6;
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 8px;
+            display: block;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .modern-checkbox {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+
+        .modern-checkbox input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkbox-custom {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            margin-right: 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .modern-checkbox input[type="checkbox"]:checked + .checkbox-custom {
+            background: #3b82f6;
+            border-color: #3b82f6;
+        }
+
+        .modern-checkbox input[type="checkbox"]:checked + .checkbox-custom::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            color: white;
+            font-size: 10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .forgot-link {
+            color: #3b82f6;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            position: relative;
+            z-index: 10;
+            cursor: pointer;
+            pointer-events: auto;
+        }
+
+        .forgot-link:hover {
+            color: #2563eb;
+        }
+
+        .auth-btn-modern {
+            width: 100%;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 10;
+            pointer-events: auto;
+        }
+
+        .auth-btn-modern:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .auth-btn-modern.loading {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        .divider {
+            text-align: center;
+            margin: 24px 0;
+            position: relative;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e5e7eb;
+            z-index: 1;
+        }
+
+        .divider span {
+            background: #fafafa;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-login {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .social-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            background: white;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 500;
+            position: relative;
+            z-index: 10;
+            pointer-events: auto;
+        }
+
+        .social-btn:hover {
+            border-color: #d1d5db;
+            transform: translateY(-1px);
+        }
+
+        .social-btn.google:hover {
+            border-color: #db4437;
+            color: #db4437;
+        }
+
+        .social-btn.apple:hover {
+            border-color: #000;
+            color: #000;
+        }
+
+        .auth-footer-modern {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            position: relative;
+            z-index: 5;
+        }
+
+        .signup-link {
+            color: #f59e0b;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            margin-left: 8px;
+            display: inline-block;
+            cursor: pointer;
+            z-index: 10;
+            position: relative;
+        }
+
+        .signup-link:hover {
+            color: #000;
+            background: #f59e0b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+            50% { opacity: 0.7; transform: scale(1.2) rotate(180deg); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .auth-container-modern {
+                flex-direction: column;
+            }
+            
+            .auth-branding {
+                padding: 40px 24px;
+                min-height: 40vh;
+            }
+            
+            .auth-form-container {
+                padding: 40px 24px;
+            }
+            
+            .brand-logo h1 {
+                font-size: 2rem;
+            }
+            
+            .brand-tagline h2 {
+                font-size: 1.5rem;
+            }
+            
+            .trust-indicators {
+                display: none;
+            }
+            
+            .social-login {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body class="auth-body">
+    <a href="../index.html" class="home-btn">
+        <i class="fas fa-home"></i>
+        <span>Back to Home</span>
+    </a>
+    
+    <!-- Futuristic Background Elements -->
+    <div class="bg-animation">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    
+    <div class="auth-container-modern">
+        <!-- Left Side - Branding -->
+        <div class="auth-branding">
+            <div class="brand-content">
+                <div class="brand-logo">
+                    <a href="../index.html" style="text-decoration: none; color: inherit;">
+                        <img src="../assets/logo-primary.svg" alt="BAAZARX" style="height: 60px;">
+                    </a>
+                </div>
+                <div class="brand-tagline">
+                    <h2>Experience the future of shopping</h2>
+                    <p>AI-powered personalized recommendations, smart search, and seamless checkout experience in Bangladesh's smartest bazaar.</p>
+                </div>
+                <div class="trust-indicators">
+                    <div class="trust-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure & Protected</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-users"></i>
+                        <span>2M+ Happy Customers</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-award"></i>
+                        <span>Best AI Shopping 2024</span>
+                    </div>
+                </div>
+            </div>
+            <div class="floating-elements">
+                <div class="float-item float-1"><i class="fas fa-robot"></i></div>
+                <div class="float-item float-2"><i class="fas fa-heart"></i></div>
+                <div class="float-item float-3"><i class="fas fa-star"></i></div>
+                <div class="float-item float-4"><i class="fas fa-magic"></i></div>
+            </div>
+        </div>
+
+        <!-- Right Side - Login Form -->
+        <div class="auth-form-container">
+            <div class="auth-form-modern">
+                <div class="form-header">
+                    <h3>Welcome back</h3>
+                    <p>Sign in to continue your shopping journey</p>
+                </div>
+
+                <form id="loginForm" class="modern-form">
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input type="email" id="email" name="email" placeholder=" " required>
+                            <label for="email">Email Address</label>
+                        </div>
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" id="password" name="password" placeholder=" " required>
+                            <label for="password">Password</label>
+                            <button type="button" class="password-toggle" onclick="togglePassword()">
+                                <i class="fas fa-eye" id="toggleIcon"></i>
+                            </button>
+                        </div>
+                        <span class="error-message" id="passwordError"></span>
+                    </div>
+
+                    <div class="form-options">
+                        <label class="modern-checkbox">
+                            <input type="checkbox" id="rememberMe">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">Remember me for 30 days</span>
+                        </label>
+                        <a href="#" class="forgot-link" onclick="handleForgotPassword(event)">Forgot password?</a>
+                    </div>
+
+                    <button type="submit" class="auth-btn-modern">
+                        <span class="btn-text">Sign In</span>
+                        <i class="fas fa-arrow-right btn-icon"></i>
+                    </button>
+                </form>
+
+                <div class="divider">
+                    <span>or continue with</span>
+                </div>
+
+                <div class="social-login">
+                    <button class="social-btn google" onclick="demoLogin('google')">
+                        <i class="fab fa-google"></i>
+                        <span>Google</span>
+                    </button>
+                    <button class="social-btn apple" onclick="demoLogin('apple')">
+                        <i class="fab fa-apple"></i>
+                        <span>Apple</span>
+                    </button>
+                </div>
+
+                <div class="auth-footer-modern">
+                    <p>New to BAAZARX? <a href="register.html" class="signup-link">Create an Account</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+    <script>
+        // Password toggle functionality
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.className = 'fas fa-eye-slash';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.className = 'fas fa-eye';
+            }
+        }
+
+        // Forgot password functionality
+        function handleForgotPassword(event) {
+            event.preventDefault();
+            showNotification('Password reset link will be sent to your email!', 'info');
+        }
+
+        // Social login demo
+        function demoLogin(provider) {
+            showNotification(`${provider} login integration coming soon!`, 'info');
+        }
+
+        // Form validation with enhanced UX
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    const email = document.getElementById('email').value.trim();
+                    const password = document.getElementById('password').value;
+                    const submitBtn = e.target.querySelector('.auth-btn-modern');
+                    
+                    // Clear previous errors
+                    document.getElementById('emailError').textContent = '';
+                    document.getElementById('passwordError').textContent = '';
+                    
+                    let isValid = true;
+                    
+                    // Email validation
+                    if (!email) {
+                        document.getElementById('emailError').textContent = 'Email is required';
+                        isValid = false;
+                    } else if (!isValidEmail(email)) {
+                        document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                        isValid = false;
+                    }
+                    
+                    // Password validation
+                    if (!password) {
+                        document.getElementById('passwordError').textContent = 'Password is required';
+                        isValid = false;
+                    } else if (password.length < 6) {
+                        document.getElementById('passwordError').textContent = 'Password must be at least 6 characters long';
+                        isValid = false;
+                    }
+                    
+                    if (isValid) {
+                        // Show loading state
+                        submitBtn.classList.add('loading');
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in...';
+                        
+                        // Simulate login process
+                        setTimeout(() => {
+                            showNotification('Welcome back! Login successful', 'success');
+                            setTimeout(() => {
+                                window.location.href = 'index.html';
+                            }, 1000);
+                        }, 1500);
+                    }
+                });
+            }
+        });
+        
+        // Enhanced email validation
+        function isValidEmail(email) {
+            const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+            return emailRegex.test(email);
+        }
+
+        // Input focus animations
+        document.querySelectorAll('.input-wrapper input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', () => {
+                if (!input.value) {
+                    input.parentElement.classList.remove('focused');
+                }
+            });
+            
+            // Check if input has value on load
+            if (input.value) {
+                input.parentElement.classList.add('focused');
+            }
+        });
+
+        // Notification function
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 16px 24px;
+                border-radius: 8px;
+                color: white;
+                font-weight: 500;
+                z-index: 1000;
+                opacity: 0;
+                transform: translateX(100%);
+                transition: all 0.3s ease;
+                max-width: 300px;
+            `;
+            
+            if (type === 'success') {
+                notification.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+            } else if (type === 'error') {
+                notification.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+            } else {
+                notification.style.background = 'linear-gradient(135deg, #3b82f6, #2563eb)';
+            }
+            
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Floating animation for background elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const floatingElements = document.querySelectorAll('.float-item');
+            floatingElements.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.5}s`;
+            });
+
+            // Add click handlers for social buttons
+            const googleBtn = document.querySelector('.social-btn.google');
+            const appleBtn = document.querySelector('.social-btn.apple');
+            
+            if (googleBtn) {
+                googleBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    demoLogin('Google');
+                });
+            }
+            
+            if (appleBtn) {
+                appleBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    demoLogin('Apple');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

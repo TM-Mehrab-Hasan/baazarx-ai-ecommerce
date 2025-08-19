@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - BAAZARX</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar admin-navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../../assets/logo-primary.svg" alt="BAAZARX Logo">
+            </div>
+            <div class="admin-nav-menu">
+                <ul class="nav-menu">
+                    <li><a href="admin-dashboard.html" class="nav-link active">Dashboard</a></li>
+                    <li><a href="#" class="nav-link" onclick="showSection('products')">Products</a></li>
+                    <li><a href="#" class="nav-link" onclick="showSection('orders')">Orders</a></li>
+                    <li><a href="#" class="nav-link" onclick="showSection('analytics')">Analytics</a></li>
+                    <li><a href="../../index.html" class="nav-link logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Admin Content -->
+    <main class="admin-main">
+        <!-- Dashboard Overview -->
+        <section id="dashboard" class="admin-section active">
+            <div class="container">
+                <div class="admin-header">
+                    <h1 class="admin-title">Admin Dashboard</h1>
+                    <p class="admin-subtitle">Manage your BAAZARX AI-powered e-commerce platform</p>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 class="stat-number" id="total-products">0</h3>
+                            <p class="stat-label">Total Products</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 class="stat-number" id="total-orders">0</h3>
+                            <p class="stat-label">Total Orders</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 class="stat-number" id="total-revenue">$0</h3>
+                            <p class="stat-label">Total Revenue</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 class="stat-number" id="total-customers">0</h3>
+                            <p class="stat-label">Customers</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h2 class="section-title">Quick Actions</h2>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="showSection('products'); showAddProductModal()">
+                            <i class="fas fa-plus"></i>
+                            Add New Product
+                        </button>
+                        <button class="action-btn" onclick="showSection('orders')">
+                            <i class="fas fa-list"></i>
+                            View All Orders
+                        </button>
+                        <button class="action-btn" onclick="exportProducts()">
+                            <i class="fas fa-download"></i>
+                            Export Products
+                        </button>
+                        <button class="action-btn" onclick="showImportModal()">
+                            <i class="fas fa-upload"></i>
+                            Import Products
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Management -->
+        <section id="products" class="admin-section">
+            <div class="container">
+                <div class="admin-header">
+                    <h1 class="admin-title">Product Management</h1>
+                    <button class="btn-primary" onclick="showAddProductModal()">
+                        <i class="fas fa-plus"></i> Add New Product
+                    </button>
+                </div>
+
+                <!-- Product Filters -->
+                <div class="admin-filters">
+                    <div class="filter-row">
+                        <div class="search-box">
+                            <input type="text" id="admin-search" placeholder="Search products...">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                        <select id="category-filter">
+                            <option value="">All Categories</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="home">Home</option>
+                            <option value="sports">Sports</option>
+                            <option value="beauty">Beauty</option>
+                        </select>
+                        <select id="status-filter">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="out-of-stock">Out of Stock</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Products Table -->
+                <div class="products-table-container">
+                    <table class="products-table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Product Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-table-body">
+                            <!-- Products will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Orders Management -->
+        <section id="orders" class="admin-section">
+            <div class="container">
+                <div class="admin-header">
+                    <h1 class="admin-title">Order Management</h1>
+                </div>
+
+                <!-- Orders Table -->
+                <div class="orders-table-container">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-table-body">
+                            <!-- Orders will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analytics Section -->
+        <section id="analytics" class="admin-section">
+            <div class="container">
+                <div class="admin-header">
+                    <h1 class="admin-title">Analytics</h1>
+                </div>
+                
+                <div class="analytics-grid">
+                    <div class="chart-card">
+                        <h3>Sales Overview</h3>
+                        <div class="chart-placeholder">
+                            <p>Sales chart will be displayed here</p>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Top Categories</h3>
+                        <div class="chart-placeholder">
+                            <p>Category chart will be displayed here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Add/Edit Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content admin-modal">
+            <span class="close" onclick="closeProductModal()">&times;</span>
+            <h2 id="modal-title">Add New Product</h2>
+            
+            <form id="productForm" class="product-form">
+                <input type="hidden" id="product-id">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="product-name">Product Name *</label>
+                        <input type="text" id="product-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-category">Category *</label>
+                        <select id="product-category" required>
+                            <option value="">Select Category</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="home">Home</option>
+                            <option value="sports">Sports</option>
+                            <option value="beauty">Beauty</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="product-description">Description *</label>
+                    <textarea id="product-description" rows="4" required></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="product-price">Price *</label>
+                        <input type="number" id="product-price" step="0.01" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-stock">Stock Quantity *</label>
+                        <input type="number" id="product-stock" min="0" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="product-image">Image URL *</label>
+                    <input type="url" id="product-image" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="product-brand">Brand</label>
+                        <input type="text" id="product-brand">
+                    </div>
+                    <div class="form-group">
+                        <label for="product-status">Status</label>
+                        <select id="product-status">
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeProductModal()">Cancel</button>
+                    <button type="submit" class="btn-primary">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Import Modal -->
+    <div id="importModal" class="modal">
+        <div class="modal-content admin-modal">
+            <span class="close" onclick="closeImportModal()">&times;</span>
+            <h2>Import Products</h2>
+            
+            <div class="import-section">
+                <div class="file-upload">
+                    <input type="file" id="import-file" accept=".json,.csv" style="display: none;">
+                    <label for="import-file" class="upload-label">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span>Choose File to Import</span>
+                    </label>
+                </div>
+                <p class="import-note">Supported formats: JSON, CSV</p>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn-secondary" onclick="closeImportModal()">Cancel</button>
+                    <button type="button" class="btn-primary" onclick="importProducts()">Import</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../js/admin.js"></script>
+</body>
+</html>

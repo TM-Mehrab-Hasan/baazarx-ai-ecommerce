@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog - BAAZARX</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo-primary.svg" alt="BAAZARX" style="height: 60px;">
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="catalog.html" class="nav-link active">Catalog</a></li>
+                <li class="nav-item"><a href="cart.html" class="nav-link">Cart <span id="cart-count" class="cart-count">0</span></a></li>
+                <li class="nav-item user-menu">
+                    <div id="user-menu-logged-out">
+                        <a href="pages/login.html" class="nav-link" style="margin-right: 15px;">Login</a>
+                        <a href="pages/register.html" class="nav-link">Register</a>
+                    </div>
+                    <div id="user-menu-logged-in" class="user-dropdown" style="display: none;">
+                        <span id="user-name" class="user-name"></span>
+                        <div class="dropdown-content">
+                            <a href="#" onclick="logout()">Logout</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="catalog-page">
+        <div class="container">
+            <h1 class="page-title">Product Catalog</h1>
+            
+            <!-- Filters -->
+            <div class="catalog-filters">
+                <div class="filters-row">
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Search products...">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="category-filter">Category:</label>
+                        <select id="category-filter">
+                            <option value="">All Categories</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="home">Home & Kitchen</option>
+                            <option value="health">Health & Beauty</option>
+                            <option value="sports">Sports & Fitness</option>
+                            <option value="books">Books & Media</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="subcategory-filter">Subcategory:</label>
+                        <select id="subcategory-filter">
+                            <option value="">All Subcategories</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="sort-filter">Sort by:</label>
+                        <select id="sort-filter">
+                            <option value="name">Name</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Rating</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="price-range">Max Price:</label>
+                        <input type="range" id="price-range" min="0" max="200000" value="200000">
+                        <span id="price-display">৳200000</span>
+                    </div>
+                    
+                    <button class="clear-filters" onclick="clearFilters()">Clear Filters</button>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="catalog-content">
+                <div class="results-info">
+                    <span id="results-count">Loading products...</span>
+                    <button id="toggle-recommendations" class="btn btn-secondary">
+                        <i class="fas fa-magic"></i> Show AI Recommendations
+                    </button>
+                </div>
+                
+                <div id="products-grid" class="products-grid">
+                    <!-- Products will be loaded here -->
+                </div>
+                
+                <div id="no-results" class="no-results" style="display: none;">
+                    <i class="fas fa-search"></i>
+                    <h3>No products found</h3>
+                    <p>Try adjusting your filters or search terms</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- AI Recommendations Sidebar -->
+    <div id="recommendations-sidebar" class="recommendations-sidebar">
+        <div class="recommendations-header">
+            <h3><i class="fas fa-magic"></i> AI Recommendations</h3>
+            <button id="close-recommendations" class="close-btn">&times;</button>
+        </div>
+        <div id="recommendations-content" class="recommendations-content">
+            <!-- Recommendations will be loaded here -->
+        </div>
+    </div>
+
+    <!-- AI Chatbot -->
+    <div id="chatbot-container" class="chatbot-container">
+        <div id="chatbot-toggle" class="chatbot-toggle">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div id="chatbot-window" class="chatbot-window">
+            <div class="chatbot-header">
+                <h4><i class="fas fa-robot"></i> AI Assistant</h4>
+                <button id="chatbot-close" class="close-btn">&times;</button>
+            </div>
+            <div id="chatbot-messages" class="chatbot-messages">
+                <div class="message bot-message">
+                    <p>Hello! I can help you find the perfect products. What are you looking for?</p>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbot-input-field" placeholder="Type your message...">
+                <button id="chatbot-send" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Variant Selection Modal -->
+    <div id="variantModal" class="modal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);">
+        <div class="modal-content" style="background-color: white; margin: 10% auto; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; position: relative;">
+            <span class="close" style="position: absolute; top: 15px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; color: #666;">&times;</span>
+            <h3 id="modalProductName" style="margin-bottom: 20px; color: #333;"></h3>
+            
+            <div id="modalVariants" style="margin-bottom: 20px;">
+                <h4 style="margin-bottom: 10px;">Select Configuration:</h4>
+                <div id="variantOptions" style="display: grid; gap: 10px;"></div>
+            </div>
+            
+            <div id="modalColors" style="margin-bottom: 20px;">
+                <h4 style="margin-bottom: 10px;">Select Color:</h4>
+                <div id="colorOptions" style="display: flex; gap: 10px; flex-wrap: wrap;"></div>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <h4 style="margin-bottom: 10px;">Quantity:</h4>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <button id="decreaseQty" style="background: #f3f4f6; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">-</button>
+                    <span id="modalQuantity" style="padding: 8px 16px; border: 1px solid #ddd; border-radius: 5px; min-width: 40px; text-align: center;">1</span>
+                    <button id="increaseQty" style="background: #f3f4f6; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">+</button>
+                </div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <span style="font-size: 1.2rem; font-weight: bold; color: #667eea;">Total: ৳<span id="modalTotalPrice">0</span></span>
+            </div>
+            
+            <button id="confirmAddToCart" style="width: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px; border: none; border-radius: 8px; font-size: 16px; font-weight: 500; cursor: pointer;">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>BAAZARX</h3>
+                    <p>Experience the future of online shopping with AI-powered recommendations and smart assistance.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="catalog.html">Catalog</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 BAAZARX. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/recommendations.js"></script>
+    <script>
+        class CatalogManager {
+            constructor() {
+                this.products = [];
+                this.filteredProducts = [];
+                this.currentFilters = {
+                    search: '',
+                    category: '',
+                    subcategory: '',
+                    sort: 'name',
+                    maxPrice: 200000
+                };
+                this.categories = null;
+                this.init();
+            }
+
+            async init() {
+                await this.loadProducts();
+                this.bindEvents();
+                this.updateSubcategoryOptions(); // Initialize subcategory options
+                this.applyFilters();
+                this.checkUrlParams();
+            }
+
+            async loadProducts() {
+                try {
+                    // Try to load from localStorage first
+                    const storedProducts = localStorage.getItem('products');
+                    const storedCategories = localStorage.getItem('categories');
+                    if (storedProducts && storedCategories) {
+                        this.products = JSON.parse(storedProducts);
+                        this.categories = JSON.parse(storedCategories);
+                    } else {
+                        // Fallback to products.json
+                        const response = await fetch('data/products.json');
+                        const data = await response.json();
+                        this.products = data.products;
+                        this.categories = data.categories;
+                        localStorage.setItem('products', JSON.stringify(this.products));
+                        localStorage.setItem('categories', JSON.stringify(this.categories));
+                    }
+                } catch (error) {
+                    console.error('Error loading products:', error);
+                    this.products = [];
+                }
+            }
+
+            updateSubcategoryOptions() {
+                const subcategorySelect = document.getElementById('subcategory-filter');
+                subcategorySelect.innerHTML = '<option value="">All Subcategories</option>';
+                
+                console.log('Updating subcategory options for category:', this.currentFilters.category);
+                console.log('Available categories:', this.categories);
+                
+                if (this.currentFilters.category && this.categories && this.categories[this.currentFilters.category]) {
+                    const subcategories = this.categories[this.currentFilters.category].subcategories;
+                    console.log('Found subcategories:', subcategories);
+                    Object.keys(subcategories).forEach(key => {
+                        const option = document.createElement('option');
+                        option.value = key;
+                        option.textContent = subcategories[key];
+                        subcategorySelect.appendChild(option);
+                    });
+                }
+            }
+
+            bindEvents() {
+                // Search input
+                const searchInput = document.getElementById('search-input');
+                searchInput.addEventListener('input', debounce((e) => {
+                    this.currentFilters.search = e.target.value;
+                    this.applyFilters();
+                }, 300));
+
+                // Category filter
+                document.getElementById('category-filter').addEventListener('change', (e) => {
+                    this.currentFilters.category = e.target.value;
+                    this.updateSubcategoryOptions();
+                    this.currentFilters.subcategory = '';
+                    document.getElementById('subcategory-filter').value = ''; // Reset subcategory dropdown
+                    this.applyFilters();
+                });
+
+                // Subcategory filter
+                document.getElementById('subcategory-filter').addEventListener('change', (e) => {
+                    this.currentFilters.subcategory = e.target.value;
+                    this.applyFilters();
+                });
+
+                // Sort filter
+                document.getElementById('sort-filter').addEventListener('change', (e) => {
+                    this.currentFilters.sort = e.target.value;
+                    this.applyFilters();
+                });
+
+                // Price range
+                const priceRange = document.getElementById('price-range');
+                const priceDisplay = document.getElementById('price-display');
+                priceRange.addEventListener('input', (e) => {
+                    const value = e.target.value;
+                    this.currentFilters.maxPrice = parseFloat(value);
+                    priceDisplay.textContent = `৳${value.toLocaleString()}`;
+                    this.applyFilters();
+                });
+
+                // Recommendations toggle
+                document.getElementById('toggle-recommendations').addEventListener('click', () => {
+                    this.toggleRecommendations();
+                });
+            }
+
+            checkUrlParams() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const category = urlParams.get('category');
+                const productId = urlParams.get('product');
+
+                if (category) {
+                    document.getElementById('category-filter').value = category;
+                    this.currentFilters.category = category;
+                    this.applyFilters();
+                }
+
+                if (productId) {
+                    this.highlightProduct(parseInt(productId));
+                }
+            }
+
+            highlightProduct(productId) {
+                setTimeout(() => {
+                    const productCard = document.querySelector(`[data-product-id="${productId}"]`);
+                    if (productCard) {
+                        productCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        productCard.classList.add('highlighted');
+                        setTimeout(() => {
+                            productCard.classList.remove('highlighted');
+                        }, 3000);
+                    }
+                }, 500);
+            }
+
+            applyFilters() {
+                this.filteredProducts = this.products.filter(product => {
+                    const matchesSearch = product.name.toLowerCase().includes(this.currentFilters.search.toLowerCase()) ||
+                                         product.description.toLowerCase().includes(this.currentFilters.search.toLowerCase());
+                    const matchesCategory = !this.currentFilters.category || product.category === this.currentFilters.category;
+                    const matchesSubcategory = !this.currentFilters.subcategory || product.subcategory === this.currentFilters.subcategory;
+                    const matchesPrice = product.price <= this.currentFilters.maxPrice;
+                    
+                    return matchesSearch && matchesCategory && matchesSubcategory && matchesPrice;
+                });
+
+                this.sortProducts();
+                this.renderProducts();
+                this.updateResultsCount();
+            }
+
+            sortProducts() {
+                this.filteredProducts.sort((a, b) => {
+                    switch (this.currentFilters.sort) {
+                        case 'price-low':
+                            return a.price - b.price;
+                        case 'price-high':
+                            return b.price - a.price;
+                        case 'rating':
+                            return (b.rating || 0) - (a.rating || 0);
+                        case 'name':
+                        default:
+                            return a.name.localeCompare(b.name);
+                    }
+                });
+            }
+
+            renderProducts() {
+                const grid = document.getElementById('products-grid');
+                const noResults = document.getElementById('no-results');
+
+                if (this.filteredProducts.length === 0) {
+                    grid.style.display = 'none';
+                    noResults.style.display = 'block';
+                    return;
+                }
+
+                grid.style.display = 'grid';
+                noResults.style.display = 'none';
+
+                grid.innerHTML = this.filteredProducts.map(product => `
+                    <div class="product-card" data-product-id="${product.id}">
+                        <div class="product-image-container">
+                            <img src="${product.image}" alt="${product.name}" class="product-image">
+                            ${product.featured ? '<span class="featured-badge">Featured</span>' : ''}
+                            ${product.colors ? `<div class="color-indicators">${product.colors.slice(0, 3).map(color => `<span class="color-dot" style="background-color: ${color.hex}" title="${color.name}"></span>`).join('')}</div>` : ''}
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">${product.name}</h3>
+                            <p class="product-category">${this.formatCategory(product.category)}</p>
+                            <p class="product-description">${product.description}</p>
+                            ${product.variants ? `<div class="variant-info">Starting from ৳${Math.min(...product.variants.map(v => v.price)).toLocaleString()}</div>` : ''}
+                            <div class="product-rating">
+                                ${this.renderStars(product.rating || 0)}
+                                <span class="rating-text">(${product.reviews || 0} reviews)</span>
+                            </div>
+                            <div class="product-price-container">
+                                <span class="product-price">৳${product.price.toLocaleString()}</span>
+                                <span class="stock-info">${product.stock} in stock</span>
+                            </div>
+                            <div class="product-actions">
+                                <button class="add-to-cart-btn" onclick="catalogManager.addToCart(${product.id})">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </button>
+                                <button class="view-details-btn" onclick="window.location.href='product-detail.html?id=${product.id}'">
+                                    <i class="fas fa-eye"></i> View Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            renderStars(rating) {
+                const fullStars = Math.floor(rating);
+                const halfStar = rating % 1 >= 0.5;
+                const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+
+                return `
+                    ${'<i class="fas fa-star"></i>'.repeat(fullStars)}
+                    ${halfStar ? '<i class="fas fa-star-half-alt"></i>' : ''}
+                    ${'<i class="far fa-star"></i>'.repeat(emptyStars)}
+                `;
+            }
+
+            formatCategory(category) {
+                const categoryMap = {
+                    'electronics': 'Electronics',
+                    'appliances': 'Home Appliances',
+                    'fashion': 'Fashion & Beauty'
+                };
+                return categoryMap[category] || category;
+            }
+
+            updateResultsCount() {
+                const count = this.filteredProducts.length;
+                const total = this.products.length;
+                const resultsCount = document.getElementById('results-count');
+                resultsCount.textContent = `Showing ${count} of ${total} products`;
+            }
+
+            addToCart(productId) {
+                const product = this.products.find(p => p.id === productId);
+                if (!product) return;
+
+                // Check if product has variants or colors
+                if (product.variants && product.variants.length > 1 || product.colors && product.colors.length > 1) {
+                    this.showVariantModal(product);
+                } else {
+                    // Direct add to cart if no variants
+                    if (window.cartManager) {
+                        window.cartManager.addItem(product);
+                    } else if (window.aiShop) {
+                        window.aiShop.addToCart(productId);
+                    }
+                }
+            }
+
+            showVariantModal(product) {
+                this.currentModalProduct = product;
+                this.modalSelectedVariant = 0;
+                this.modalSelectedColor = 0;
+                this.modalQuantity = 1;
+
+                // Update modal content
+                document.getElementById('modalProductName').textContent = product.name;
+                
+                // Render variants
+                if (product.variants && product.variants.length > 1) {
+                    document.getElementById('modalVariants').style.display = 'block';
+                    const variantOptions = document.getElementById('variantOptions');
+                    variantOptions.innerHTML = product.variants.map((variant, index) => `
+                        <div class="variant-option ${index === 0 ? 'selected' : ''}" onclick="catalogManager.selectModalVariant(${index})" 
+                             style="padding: 10px; border: 2px solid ${index === 0 ? '#667eea' : '#ddd'}; border-radius: 8px; cursor: pointer; background: ${index === 0 ? '#f0f4ff' : 'white'};">
+                            <div style="font-weight: 500;">${variant.ram ? variant.ram + ' RAM, ' : ''}${variant.storage || variant.size || variant.model || 'Standard'}</div>
+                            <div style="color: #667eea; font-weight: 600;">৳${variant.price.toLocaleString()}</div>
+                        </div>
+                    `).join('');
+                } else {
+                    document.getElementById('modalVariants').style.display = 'none';
+                }
+
+                // Render colors
+                if (product.colors && product.colors.length > 1) {
+                    document.getElementById('modalColors').style.display = 'block';
+                    const colorOptions = document.getElementById('colorOptions');
+                    colorOptions.innerHTML = product.colors.map((color, index) => `
+                        <div class="color-option ${index === 0 ? 'selected' : ''}" onclick="catalogManager.selectModalColor(${index})"
+                             style="display: flex; align-items: center; gap: 8px; padding: 8px 12px; border: 2px solid ${index === 0 ? '#667eea' : '#ddd'}; border-radius: 8px; cursor: pointer; background: ${index === 0 ? '#f0f4ff' : 'white'};">
+                            <div style="width: 20px; height: 20px; border-radius: 50%; background-color: ${color.hex}; border: 1px solid #ddd;"></div>
+                            <span style="font-size: 14px;">${color.name}</span>
+                        </div>
+                    `).join('');
+                } else {
+                    document.getElementById('modalColors').style.display = 'none';
+                }
+
+                this.updateModalPrice();
+                document.getElementById('variantModal').style.display = 'block';
+            }
+
+            selectModalVariant(index) {
+                this.modalSelectedVariant = index;
+                
+                // Update visual selection
+                document.querySelectorAll('#variantOptions .variant-option').forEach((el, i) => {
+                    el.style.border = i === index ? '2px solid #667eea' : '2px solid #ddd';
+                    el.style.background = i === index ? '#f0f4ff' : 'white';
+                    el.className = i === index ? 'variant-option selected' : 'variant-option';
+                });
+                
+                this.updateModalPrice();
+            }
+
+            selectModalColor(index) {
+                this.modalSelectedColor = index;
+                
+                // Update visual selection
+                document.querySelectorAll('#colorOptions .color-option').forEach((el, i) => {
+                    el.style.border = i === index ? '2px solid #667eea' : '2px solid #ddd';
+                    el.style.background = i === index ? '#f0f4ff' : 'white';
+                    el.className = i === index ? 'color-option selected' : 'color-option';
+                });
+            }
+
+            updateModalPrice() {
+                const product = this.currentModalProduct;
+                const variant = product.variants ? product.variants[this.modalSelectedVariant] : null;
+                const price = variant ? variant.price : product.price;
+                const total = price * this.modalQuantity;
+                
+                document.getElementById('modalTotalPrice').textContent = total.toLocaleString();
+            }
+
+            changeModalQuantity(change) {
+                this.modalQuantity = Math.max(1, this.modalQuantity + change);
+                document.getElementById('modalQuantity').textContent = this.modalQuantity;
+                this.updateModalPrice();
+            }
+
+            confirmAddToCart() {
+                const product = this.currentModalProduct;
+                const variant = product.variants ? product.variants[this.modalSelectedVariant] : null;
+                const color = product.colors ? product.colors[this.modalSelectedColor] : null;
+                
+                const cartItem = {
+                    id: product.id,
+                    name: product.name,
+                    price: variant ? variant.price : product.price,
+                    image: color ? color.image : product.image,
+                    quantity: this.modalQuantity,
+                    variant: variant ? `${variant.ram || ''} ${variant.storage || variant.size || variant.model || ''}`.trim() : null,
+                    color: color ? color.name : null
+                };
+
+                // Add to cart
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const existingIndex = cart.findIndex(item => 
+                    item.id === cartItem.id && 
+                    item.variant === cartItem.variant && 
+                    item.color === cartItem.color
+                );
+                
+                if (existingIndex > -1) {
+                    cart[existingIndex].quantity += cartItem.quantity;
+                } else {
+                    cart.push(cartItem);
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                this.updateCartCount();
+                
+                // Close modal
+                document.getElementById('variantModal').style.display = 'none';
+                
+                // Show success message
+                alert('Product added to cart!');
+            }
+
+            updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const count = cart.reduce((total, item) => total + item.quantity, 0);
+                const cartCountElement = document.querySelector('.cart-count');
+                if (cartCountElement) {
+                    cartCountElement.textContent = count;
+                    cartCountElement.style.display = count > 0 ? 'block' : 'none';
+                }
+            }
+
+            toggleRecommendations() {
+                const sidebar = document.getElementById('recommendations-sidebar');
+                sidebar.classList.toggle('active');
+                
+                if (sidebar.classList.contains('active')) {
+                    this.loadRecommendations();
+                }
+            }
+
+            loadRecommendations() {
+                const content = document.getElementById('recommendations-content');
+                if (!content) return;
+
+                // Simple AI recommendation logic
+                let recommendations = [];
+                
+                if (this.currentFilters.category) {
+                    // Recommend products from the same category
+                    recommendations = this.products
+                        .filter(p => p.category === this.currentFilters.category && p.featured)
+                        .slice(0, 5);
+                } else {
+                    // Recommend featured products
+                    recommendations = this.products
+                        .filter(p => p.featured)
+                        .slice(0, 5);
+                }
+
+                content.innerHTML = `
+                    <div class="recommendations-intro">
+                        <p><i class="fas fa-brain"></i> Based on your browsing, our AI suggests:</p>
+                    </div>
+                    ${recommendations.map(product => `
+                        <div class="recommendation-item" onclick="catalogManager.selectRecommendation(${product.id})">
+                            <img src="${product.image}" alt="${product.name}" class="recommendation-image">
+                            <div class="recommendation-info">
+                                <h4>${product.name}</h4>
+                                <p class="recommendation-price">৳${product.price.toLocaleString()}</p>
+                                <div class="recommendation-rating">
+                                    ${this.renderStars(product.rating || 0)}
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                `;
+            }
+
+            selectRecommendation(productId) {
+                const productCard = document.querySelector(`[data-product-id="${productId}"]`);
+                if (productCard) {
+                    productCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    productCard.classList.add('highlighted');
+                    setTimeout(() => {
+                        productCard.classList.remove('highlighted');
+                    }, 3000);
+                }
+                
+                // Close recommendations sidebar
+                document.getElementById('recommendations-sidebar').classList.remove('active');
+            }
+        }
+
+        function clearFilters() {
+            document.getElementById('search-input').value = '';
+            document.getElementById('category-filter').value = '';
+            document.getElementById('subcategory-filter').value = '';
+            document.getElementById('sort-filter').value = 'name';
+            document.getElementById('price-range').value = '200000';
+            document.getElementById('price-display').textContent = '৳200000';
+            
+            catalogManager.currentFilters = {
+                search: '',
+                category: '',
+                subcategory: '',
+                sort: 'name',
+                maxPrice: 200000
+            };
+            
+            catalogManager.updateSubcategoryOptions();
+            catalogManager.applyFilters();
+        }
+
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Initialize catalog when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            window.catalogManager = new CatalogManager();
+            
+            // Close recommendations sidebar
+            document.getElementById('close-recommendations').addEventListener('click', () => {
+                document.getElementById('recommendations-sidebar').classList.remove('active');
+            });
+
+            // Modal event listeners
+            document.querySelector('#variantModal .close').addEventListener('click', () => {
+                document.getElementById('variantModal').style.display = 'none';
+            });
+
+            document.getElementById('decreaseQty').addEventListener('click', () => {
+                window.catalogManager.changeModalQuantity(-1);
+            });
+
+            document.getElementById('increaseQty').addEventListener('click', () => {
+                window.catalogManager.changeModalQuantity(1);
+            });
+
+            document.getElementById('confirmAddToCart').addEventListener('click', () => {
+                window.catalogManager.confirmAddToCart();
+            });
+
+            // Close modal when clicking outside
+            document.getElementById('variantModal').addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) {
+                    document.getElementById('variantModal').style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

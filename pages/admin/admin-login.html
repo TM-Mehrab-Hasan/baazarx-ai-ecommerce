@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - BAAZARX</title>
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Home button styles */
+        .home-btn {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            color: #f59e0b;
+            border: 2px solid rgba(245, 158, 11, 0.3);
+            padding: 12px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(15px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .home-btn:hover {
+            background: rgba(245, 158, 11, 0.9);
+            color: #000;
+            border-color: #f59e0b;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Modern Auth Body - White Background */
+        .auth-body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .auth-body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 60%, rgba(99, 102, 241, 0.03) 0%, transparent 50%);
+            animation: floating-orbs 20s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes floating-orbs {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            33% { transform: translateY(-20px) scale(1.1); }
+            66% { transform: translateY(10px) scale(0.9); }
+        }
+
+        .auth-container-modern {
+            display: flex;
+            min-height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Left Side - Admin Branding - Modern White */
+        .auth-branding {
+            flex: 1;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid rgba(59, 130, 246, 0.1);
+        }
+
+        .auth-branding::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .brand-content {
+            z-index: 2;
+            position: relative;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .brand-logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .admin-badge {
+            background: linear-gradient(45deg, #ff6b6b, #ffd700);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+            animation: glow 2s infinite alternate;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        .brand-tagline h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .brand-tagline p {
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.5;
+            margin-bottom: 30px;
+        }
+
+        .trust-indicators {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .trust-item i {
+            margin-right: 16px;
+            font-size: 1.2rem;
+            color: #4ade80;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .float-item {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .float-1 { top: 20%; left: 80%; animation-delay: 0s; }
+        .float-2 { top: 60%; left: 10%; animation-delay: 1s; }
+        .float-3 { top: 80%; left: 70%; animation-delay: 2s; }
+        .float-4 { top: 40%; left: 90%; animation-delay: 3s; }
+
+        /* Right Side - Form */
+        .auth-form-container {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fafafa;
+            position: relative;
+            z-index: 5;
+        }
+
+        .auth-form-modern {
+            width: 100%;
+            max-width: 440px;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: #6b7280;
+            font-size: 1rem;
+        }
+
+        .modern-form {
+            margin-bottom: 32px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            background: white;
+            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .input-wrapper.focused {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .input-wrapper.focused .input-icon {
+            color: #3b82f6;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 16px 16px 16px 48px;
+            border: none;
+            background: transparent;
+            font-size: 1rem;
+            color: #1f2937;
+            outline: none;
+            border-radius: 12px;
+        }
+
+        .input-wrapper label {
+            position: absolute;
+            left: 48px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            font-size: 1rem;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-wrapper.focused label,
+        .input-wrapper input:not(:placeholder-shown) + label {
+            top: 8px;
+            font-size: 0.75rem;
+            color: #3b82f6;
+            background: white;
+            padding: 0 4px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .password-toggle:hover {
+            color: #3b82f6;
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-top: 8px;
+            display: block;
+        }
+
+        .auth-btn-modern {
+            width: 100%;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .auth-btn-modern:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .auth-btn-modern.loading {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+
+        /* Animations */
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .auth-container-modern {
+                flex-direction: column;
+            }
+            
+            .auth-branding {
+                padding: 40px 24px;
+                min-height: 40vh;
+            }
+            
+            .auth-form-container {
+                padding: 40px 24px;
+            }
+            
+            .brand-logo h1 {
+                font-size: 2rem;
+            }
+            
+            .brand-tagline h2 {
+                font-size: 1.5rem;
+            }
+            
+            .trust-indicators {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="auth-body">
+    <a href="../../index.html" class="home-btn">
+        <i class="fas fa-home"></i>
+        <span>Back to Home</span>
+    </a>
+    
+    <div class="auth-container-modern">
+        <!-- Left Side - Admin Branding -->
+        <div class="auth-branding">
+            <div class="brand-content">
+                <div class="brand-logo">
+                    <a href="../../index.html" style="text-decoration: none; color: inherit;">
+                        <img src="../../assets/logo-primary.svg" alt="BAAZARX" style="height: 60px;">
+                    </a>
+                    <span class="admin-badge">ADMIN</span>
+                </div>
+                <div class="brand-tagline">
+                    <h2>Admin Control Center</h2>
+                    <p>Secure access to BAAZARX administrative dashboard. Manage your AI-powered e-commerce platform with advanced tools and analytics.</p>
+                </div>
+                <div class="trust-indicators">
+                    <div class="trust-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure Authentication</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Full System Control</span>
+                    </div>
+                    <div class="trust-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Advanced Analytics</span>
+                    </div>
+                </div>
+            </div>
+            <div class="floating-elements">
+                <div class="float-item float-1"><i class="fas fa-cog"></i></div>
+                <div class="float-item float-2"><i class="fas fa-shield-alt"></i></div>
+                <div class="float-item float-3"><i class="fas fa-chart-bar"></i></div>
+                <div class="float-item float-4"><i class="fas fa-database"></i></div>
+            </div>
+        </div>
+
+        <!-- Right Side - Login Form -->
+        <div class="auth-form-container">
+            <div class="auth-form-modern">
+                <div class="form-header">
+                    <h3>Admin Login</h3>
+                    <p>Access your administrative dashboard</p>
+                </div>
+
+                <form id="adminLoginForm" class="modern-form">
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input type="email" id="email" name="email" placeholder=" " required>
+                            <label for="email">Admin Email</label>
+                        </div>
+                        <span class="error-message" id="emailError"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" id="password" name="password" placeholder=" " required>
+                            <label for="password">Password</label>
+                            <button type="button" class="password-toggle" onclick="togglePassword()">
+                                <i class="fas fa-eye" id="toggleIcon"></i>
+                            </button>
+                        </div>
+                        <span class="error-message" id="passwordError"></span>
+                    </div>
+
+                    <button type="submit" class="auth-btn-modern">
+                        <span class="btn-text">Access Dashboard</span>
+                        <i class="fas fa-arrow-right btn-icon"></i>
+                    </button>
+                </form>
+
+                <div class="demo-credentials" style="background: rgba(59, 130, 246, 0.1); padding: 16px; border-radius: 12px; margin-top: 20px; border-left: 4px solid #3b82f6;">
+                    <h4 style="color: #3b82f6; margin-bottom: 8px; font-size: 0.9rem;">Demo Credentials:</h4>
+                    <p style="color: #6b7280; font-size: 0.85rem; margin: 0;">Email: admin@baazarx.com</p>
+                    <p style="color: #6b7280; font-size: 0.85rem; margin: 0;">Password: admin123</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Password toggle functionality
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('toggleIcon');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.className = 'fas fa-eye-slash';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.className = 'fas fa-eye';
+            }
+        }
+
+        // Admin login functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const adminLoginForm = document.getElementById('adminLoginForm');
+            if (adminLoginForm) {
+                adminLoginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const email = document.getElementById('email').value.trim();
+                    const password = document.getElementById('password').value;
+                    const submitBtn = e.target.querySelector('.auth-btn-modern');
+                    
+                    // Clear previous errors
+                    document.getElementById('emailError').textContent = '';
+                    document.getElementById('passwordError').textContent = '';
+                    
+                    let isValid = true;
+                    
+                    // Email validation
+                    if (!email) {
+                        document.getElementById('emailError').textContent = 'Email is required';
+                        isValid = false;
+                    } else if (email !== 'admin@baazarx.com') {
+                        document.getElementById('emailError').textContent = 'Invalid admin email';
+                        isValid = false;
+                    }
+                    
+                    // Password validation
+                    if (!password) {
+                        document.getElementById('passwordError').textContent = 'Password is required';
+                        isValid = false;
+                    } else if (password !== 'admin123') {
+                        document.getElementById('passwordError').textContent = 'Invalid password';
+                        isValid = false;
+                    }
+                    
+                    if (isValid) {
+                        // Show loading state
+                        submitBtn.classList.add('loading');
+                        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
+                        
+                        // Store admin session
+                        localStorage.setItem('adminLoggedIn', 'true');
+                        localStorage.setItem('adminUser', JSON.stringify({
+                            email: email,
+                            loginTime: new Date().toISOString()
+                        }));
+                        
+                        // Redirect to admin dashboard
+                        setTimeout(() => {
+                            window.location.href = 'admin-dashboard.html';
+                        }, 1500);
+                    }
+                });
+            }
+
+            // Check if already logged in - only redirect if explicitly requested
+            // Commented out auto-redirect to allow manual login
+            // if (localStorage.getItem('adminLoggedIn') === 'true') {
+            //     window.location.href = 'admin-dashboard.html';
+            // }
+        });
+
+        // Input focus animations
+        document.querySelectorAll('.input-wrapper input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', () => {
+                if (!input.value) {
+                    input.parentElement.classList.remove('focused');
+                }
+            });
+            
+            // Check if input has value on load
+            if (input.value) {
+                input.parentElement.classList.add('focused');
+            }
+        });
+    </script>
+</body>
+</html>
