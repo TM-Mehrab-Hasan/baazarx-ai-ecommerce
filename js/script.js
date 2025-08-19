@@ -93,20 +93,30 @@ class AISmartShop {
         const navMenu = document.querySelector('.nav-menu');
         
         if (hamburger && navMenu) {
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
+            // Add multiple event types for better mobile support
+            hamburger.addEventListener('click', this.toggleMobileMenu.bind(this, hamburger, navMenu));
+            hamburger.addEventListener('touchend', this.toggleMobileMenu.bind(this, hamburger, navMenu));
+            
+            // Prevent default touch behavior
+            hamburger.addEventListener('touchstart', (e) => {
+                e.preventDefault();
             });
         }
 
         // Close mobile menu when clicking on links
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', () => {
-                if (hamburger && navMenu) {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                }
+                this.closeMobileMenu(hamburger, navMenu);
             });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (navMenu && navMenu.classList.contains('active') && 
+                !navMenu.contains(e.target) && 
+                !hamburger.contains(e.target)) {
+                this.closeMobileMenu(hamburger, navMenu);
+            }
         });
 
         // Smooth scrolling for anchor links
@@ -125,6 +135,30 @@ class AISmartShop {
                 }
             });
         });
+    }
+
+    // Toggle mobile menu
+    toggleMobileMenu(hamburger, navMenu, e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        
+        // Update ARIA attributes for accessibility
+        const isActive = hamburger.classList.contains('active');
+        hamburger.setAttribute('aria-expanded', isActive.toString());
+        navMenu.setAttribute('aria-hidden', (!isActive).toString());
+    }
+
+    // Close mobile menu
+    closeMobileMenu(hamburger, navMenu) {
+        if (hamburger && navMenu) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            navMenu.setAttribute('aria-hidden', 'true');
+        }
     }
 
     // Load popular products for homepage
