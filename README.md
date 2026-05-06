@@ -3,6 +3,8 @@
 ## Overview
 BAAZARX is a modern, AI-powered e-commerce platform featuring a clean white design with neon blue accents and golden highlights. The platform includes comprehensive product management, intelligent chatbot assistance, and a complete admin dashboard for managing the store.
 
+It's live at - **[Baazar-X](https://baazarx.netlify.app/)**
+
 **🎉 Latest Updates (August 2025)**: 
 - ✅ **Complete catalog page design** with advanced filtering and search functionality
 - ✅ **Professional cart and checkout** with modern UI/UX design
